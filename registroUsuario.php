@@ -44,9 +44,11 @@
             </div>
 
             <div role="main" class="ui-content" data-theme="b">
-                <form method="post" action="#" data-theme="b">
+                <form method="post" action="submit.php" data-theme="b">
                     <div data-role="collapsible">
                         <h3>Informacion Basica</h3>
+                        <label for="cedulaI" data-theme="b">No. Identificacion: </label>
+                        <input data-role="text" name="cedulaI" id="cedulaI" data-clear-btn="true" value="" class="ui-input-text ui-body-b">
                         <label for="usuarioL" data-theme="b">Nombre: </label>
                         <input data-role="text" name="nombreI" id="nombreI" data-clear-btn="true" value="" class="ui-input-text ui-body-b">
                         <label for="apellidoUnoL" data-theme="b">Primer Apellido: </label>
@@ -69,7 +71,7 @@
                         <label for="celularL" data-theme="b">Celular: </label>
                         <input type="tel" name="celularI" id="celularI" value="" data-clear-btn="true" class="ui-input-text ui-body-b">
                     </div>
-                    <button data-role="submit" data-theme="b">Registrar</button>
+                    <button data-role="submit" name="registrarUsuario" data-theme="b">Registrar</button>
                 </form>
             </div>
             <div data-role="footer" data-theme="b" data-position="fixed">
