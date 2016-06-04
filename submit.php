@@ -4,7 +4,7 @@ include('conexion.php');
 
 $dbh = new PDO($cadena,$user,$pass);
 
-$sentenciaInsertUsuario = $dbh->prepare("INSERT INTO usuarios (`codUsuario`, `nombre`, `apellidoUno`, `apellidoDos`, `fechaNacimiento`, `codDatoPersonal`) VALUES (:cedula, :nombre, :primerApellido, :segundoApellido, CURRENT_DATE, :email)");
+$sentenciaInsertUsuario = $dbh->prepare("INSERT INTO usuarios (`codUsuario`, `nombre`, `apellidoUno`, `apellidoDos`, `fechaNacimiento`, `codDatoPersonal`) VALUES (:cedula, :nombre, :primerApellido, :segundoApellido, :fechaNacimiento, :email)");
 
 $sentenciaInsertDatosPer = $dbh->prepare("INSERT INTO datospersonales (`codDatoPersonal`, `direccionUno`, `direccionDos`, `telefono`, `celular`, `codLocalidad`) VALUES (:email, :direccionUno, :direccionDos, :telefono, :celular, 1)");
 
@@ -21,14 +21,6 @@ if(isset($_POST['registrarUsuario'])){
 	$telefono = $_POST['telefonoI'];
 	$celular = $_POST['celularI'];
 
-	$sentenciaInsertDatosPer->bindParam(':email', $email);
-	$sentenciaInsertDatosPer->bindParam(':direccionUno', $primeraDireccion);
-	$sentenciaInsertDatosPer->bindParam(':direccionDos', $segundaDireccion);
-	$sentenciaInsertDatosPer->bindParam(':telefono', $telefono);
-	$sentenciaInsertDatosPer->bindParam(':celular', $celular);
-	$sentenciaInsertDatosPer->execute();
-
-
 	$sentenciaInsertUsuario->bindParam(':cedula', $cedula);
 	$sentenciaInsertUsuario->bindParam(':nombre', $name);
 	$sentenciaInsertUsuario->bindParam(':primerApellido', $primerApellido);
@@ -37,7 +29,15 @@ if(isset($_POST['registrarUsuario'])){
 	$sentenciaInsertUsuario->bindParam(':email', $email);
 	$sentenciaInsertUsuario->execute();
 
-	return;
+	$sentenciaInsertDatosPer->bindParam(':email', $email);
+	$sentenciaInsertDatosPer->bindParam(':direccionUno', $primeraDireccion);
+	$sentenciaInsertDatosPer->bindParam(':direccionDos', $segundaDireccion);
+	$sentenciaInsertDatosPer->bindParam(':telefono', $telefono);
+	$sentenciaInsertDatosPer->bindParam(':celular', $celular);
+	$sentenciaInsertDatosPer->execute();
+
+	header('Location: index.php'); 
+	exit();
 }
 
 ?>
