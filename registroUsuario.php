@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+include('conexion.php');
+    //$variable = mysql_query("SELECT * FROM  Usuarios") or die("Error en: SELECT * FROM  USUARIOS: " . mysql_error());
+
+$queryPais = "SELECT * FROM paises";
+$queryProvincias = "SELECT * FROM provincias WHERE codPais = ?";
+
+?>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,13 +63,31 @@
                     <input data-role="text" name="apellidoUnoI" id="apellidoUnoI" data-clear-btn="true" value="" class="ui-input-text ui-body-b">
                     <label for="apellidoDosI" data-theme="b">Segundo Apellido: </label>
                     <input data-role="text" name="apellidoDosI" id="apellidoDosI" data-clear-btn="true" value="" class="ui-input-text ui-body-b">
-                    <label for="fechaNacimientoL" data-theme="b">Fecha Nacimiento: </label>
-                    <input type="date" name="fechaNacimientoL" id="fechaNacimientoL" value="" data-clear-btn="true" class="ui-input-text ui-body-b">
+                    <label for="fechaNacimientoI" data-theme="b">Fecha Nacimiento: </label>
+                    <input type="date" name="fechaNacimientoI" id="fechaNacimientoI" value="" data-clear-btn="true" class="ui-input-text ui-body-b">
                 </div>
                 <div data-role="collapsible">
                     <h3>Informacion de Contacto</h3>
                     <label for="emailI" data-theme="b">Correo Electronico: </label>
                     <input type="email" name="emailI" id="emailI" data-clear-btn="true" value="" class="ui-input-text ui-body-b">
+                    <label for="paisI" data-theme="b">Pais: </label>
+                    <select name="paisI" id="paisI">
+                        <?php
+                            try{
+                                $dbh = new PDO($cadena,$user,$pass);
+                                foreach ($dbh->query($queryPais) as $row) {
+                                    ?>
+                                    <option value="<?php echo $row['codPais'];?>">
+                                        <?php echo $row['nombre'];?>
+                                    </option>
+                                    <?php
+                                }
+                            } catch (PDOException $e){
+                                print "Error: " . $e->getMessage() . "<br/>";
+                                die();
+                            }
+                        ?>
+                    </select>
                     <label for="direccionUnoI" data-theme="b">Direccion uno: </label>
                     <input data-role="text" name="direccionUnoI" id="direccionUnoI" data-clear-btn="true" value="" class="ui-input-text ui-body-b">
                     <label for="direccionDosI" data-theme="b">Direccion dos: </label>

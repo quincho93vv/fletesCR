@@ -6,7 +6,7 @@ $dbh = new PDO($cadena,$user,$pass);
 
 $sentenciaInsertUsuario = $dbh->prepare("INSERT INTO usuarios (`codUsuario`, `nombre`, `apellidoUno`, `apellidoDos`, `fechaNacimiento`, `codDatoPersonal`) VALUES (:cedula, :nombre, :primerApellido, :segundoApellido, :fechaNacimiento, :email)");
 
-$sentenciaInsertDatosPer = $dbh->prepare("INSERT INTO datospersonales (`codDatoPersonal`, `direccionUno`, `direccionDos`, `telefono`, `celular`, `codLocalidad`) VALUES (:email, :direccionUno, :direccionDos, :telefono, :celular, 1)");
+$sentenciaInsertDatosPer = $dbh->prepare("INSERT INTO datospersonales (`codDatoPersonal`, `direccionUno`, `direccionDos`, `telefono`, `celular`, `codLocalidad`) VALUES (:email, :direccionUno, :direccionDos, :telefono, :celular, :pais)");
 
 
 if(isset($_POST['registrarUsuario'])){
@@ -20,6 +20,15 @@ if(isset($_POST['registrarUsuario'])){
 	$segundaDireccion = $_POST['direccionDosI'];
 	$telefono = $_POST['telefonoI'];
 	$celular = $_POST['celularI'];
+	$pais = $_POST['paisI'];
+
+	$sentenciaInsertDatosPer->bindParam(':email', $email);
+	$sentenciaInsertDatosPer->bindParam(':direccionUno', $primeraDireccion);
+	$sentenciaInsertDatosPer->bindParam(':direccionDos', $segundaDireccion);
+	$sentenciaInsertDatosPer->bindParam(':telefono', $telefono);
+	$sentenciaInsertDatosPer->bindParam(':celular', $celular);
+	$sentenciaInsertDatosPer->bindParam(':pais', $pais);
+	$sentenciaInsertDatosPer->execute();
 
 	$sentenciaInsertUsuario->bindParam(':cedula', $cedula);
 	$sentenciaInsertUsuario->bindParam(':nombre', $name);
@@ -28,13 +37,6 @@ if(isset($_POST['registrarUsuario'])){
 	$sentenciaInsertUsuario->bindParam(':fechaNacimiento', $fechaNacimiento);
 	$sentenciaInsertUsuario->bindParam(':email', $email);
 	$sentenciaInsertUsuario->execute();
-
-	$sentenciaInsertDatosPer->bindParam(':email', $email);
-	$sentenciaInsertDatosPer->bindParam(':direccionUno', $primeraDireccion);
-	$sentenciaInsertDatosPer->bindParam(':direccionDos', $segundaDireccion);
-	$sentenciaInsertDatosPer->bindParam(':telefono', $telefono);
-	$sentenciaInsertDatosPer->bindParam(':celular', $celular);
-	$sentenciaInsertDatosPer->execute();
 
 	header('Location: index.php'); 
 	exit();
