@@ -28,13 +28,6 @@ d.codProvincia = e.codProvincia AND d.codPais = e.codPais AND e.codLocalidad = f
                         <img src="Imagenes/pickup-truck-34270_960_720.png" style="height:100%;width:100%" data-theme="b">
                     </div>
                     <div class="ui-block-b">
-
-                        <form method="post" action="errorPage.html">
-                            <div class="ui-field-contain" data-theme="b">
-                                <label for="search" data-theme="b">Buscar:</label>
-                                <input type="search" name="search" id="search" placeholder="Ubicacion" data-theme="b">
-                            </div> 
-                        </form> 
                         <h2>Fletes Costa Rica</h2>
                         <p>El mejor sitio para encontrar como transportar sus cosas.</p>
 
