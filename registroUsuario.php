@@ -73,37 +73,37 @@ $queryProvincias = "SELECT * FROM provincias WHERE codPais = 0";
                     <label for="paisI" data-theme="b">Pais: </label>
                     <select name="paisI" id="paisI">
                         <?php
-                            try{
-                                $dbh = new PDO($cadena,$user,$pass);
-                                foreach ($dbh->query($queryPais) as $row) {
-                                    ?>
-                                    <option value="<?php echo $row['codPais'];?>">
-                                        <?php echo $row['nombre'];?>
-                                    </option>
-                                    <?php
-                                }
-                            } catch (PDOException $e){
-                                print "Error: " . $e->getMessage() . "<br/>";
-                                die();
+                        try{
+                            $dbh = new PDO($cadena,$user,$pass);
+                            foreach ($dbh->query($queryPais) as $row) {
+                                ?>
+                                <option value="<?php echo $row['codPais'];?>">
+                                    <?php echo $row['nombre'];?>
+                                </option>
+                                <?php
                             }
+                        } catch (PDOException $e){
+                            print "Error: " . $e->getMessage() . "<br/>";
+                            die();
+                        }
                         ?>
                     </select>
                     <label for="provinciasI" data-theme="b">Estado / provincia: </label>
                     <select name="provinciasI" id="provinciasI">
                         <?php
-                            try{
-                                $dbh = new PDO($cadena,$user,$pass);
-                                foreach ($dbh->query($queryProvincias) as $row) {
-                                    ?>
-                                    <option value="<?php echo $row['codProvincia'];?>">
-                                        <?php echo $row['nombre'];?>
-                                    </option>
-                                    <?php
-                                }
-                            } catch (PDOException $e){
-                                print "Error: " . $e->getMessage() . "<br/>";
-                                die();
+                        try{
+                            $dbh = new PDO($cadena,$user,$pass);
+                            foreach ($dbh->query($queryProvincias) as $row) {
+                                ?>
+                                <option value="<?php echo $row['codProvincia'];?>">
+                                    <?php echo $row['nombre'];?>
+                                </option>
+                                <?php
                             }
+                        } catch (PDOException $e){
+                            print "Error: " . $e->getMessage() . "<br/>";
+                            die();
+                        }
                         ?>
                     </select>
                     <label for="direccionUnoI" data-theme="b">Direccion uno: </label>

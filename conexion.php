@@ -1,5 +1,5 @@
 <?php
-$cadena = "mysql:host=localhost;dbname=fletesCR";
-$user = "fletesCR";
-$pass = "";
+	$cadena = "mysql:host=localhost;dbname=fletescr";
+	$user = "fletesCR";
+	$pass = "";
 ?>
