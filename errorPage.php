@@ -1,3 +1,6 @@
+<?php
+	$error = htmlspecialchars($_GET["error"]);
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,5 +9,6 @@
     </head>
     <body>
         <h1>ERROR</h1>
+        <p><?php echo $error ?></p>
     </body>
 </html>
