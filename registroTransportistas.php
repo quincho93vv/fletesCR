@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<?php
-include('conexion.php');
-
-$queryPais = "SELECT * FROM paises";
-$queryProvincias = "SELECT * FROM provincias WHERE codPais = 0";
-
-?>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
