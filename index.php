@@ -44,7 +44,7 @@ d.codProvincia = e.codProvincia AND d.codPais = e.codPais AND e.codLocalidad = f
                                 <a href="#loginRegistro" id="ingresar" class="ui-btn ui-shadow ui-corner-all ui-icon-user ui-btn-icon-top" data-transition="pop" data-theme="b">Ingresar</a>
                             </li>
                             <li>
-                                <a href="#loginRegistro" id="ofrecerFlete" class="ui-btn ui-shadow ui-corner-all ui-icon-carat-r ui-btn-icon-top" data-transition="pop" data-theme="b">Ofrecer Fletes</a>
+                                <a href="registroTransportistas.php" id="ofrecerFlete" class="ui-btn ui-shadow ui-corner-all ui-icon-carat-r ui-btn-icon-top" data-transition="pop" data-theme="b">Ofrecer Fletes</a>
                             </li>
                         </ul>
                     </div>
@@ -53,7 +53,7 @@ d.codProvincia = e.codProvincia AND d.codPais = e.codPais AND e.codLocalidad = f
             <div role="main" class="ui-content" data-theme="b" jqm-content>
 
                 <ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar..." data-inset="true">
-                    <li data-role="list-divider">Fletes Disponibles Actualmente</li>
+                    <li data-role="list-divider">Autos Disponibles Actualmente</li>
 
                     <?php
                     try{

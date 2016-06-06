@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
 include('conexion.php');
-    //$variable = mysql_query("SELECT * FROM  Usuarios") or die("Error en: SELECT * FROM  USUARIOS: " . mysql_error());
 
 $queryPais = "SELECT * FROM paises";
 $queryProvincias = "SELECT * FROM provincias WHERE codPais = 0";
@@ -44,7 +43,7 @@ $queryProvincias = "SELECT * FROM provincias WHERE codPais = 0";
                             <a href="#loginRegistro" id="ingresar" class="ui-btn ui-shadow ui-corner-all ui-icon-user ui-btn-icon-top" data-transition="pop" data-theme="b">Ingresar</a>
                         </li>
                         <li>
-                            <a href="#loginRegistro" id="ofrecerFlete" class="ui-btn ui-shadow ui-corner-all ui-icon-carat-r ui-btn-icon-top" data-transition="pop" data-theme="b">Ofrecer Fletes</a>
+                            <a href="registroTransportistas.php" id="ofrecerFlete" class="ui-btn ui-shadow ui-corner-all ui-icon-carat-r ui-btn-icon-top" data-transition="pop" data-theme="b">Ofrecer Fletes</a>
                         </li>
                     </ul>
                 </div>
