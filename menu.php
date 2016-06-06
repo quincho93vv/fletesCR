@@ -1,11 +1,22 @@
 <?php
 include('conexion.php');
-    //$variable = mysql_query("SELECT * FROM  Usuarios") or die("Error en: SELECT * FROM  USUARIOS: " . mysql_error());
 
-$query = "SELECT a.nombre AS nombre, z.nombre AS imagen, z.direccion AS direccion, d.nombre AS lugar, a.codUsuario AS identificacion, b.codAutoTransportista AS placa 
-FROM Usuarios a, UsuariosTransportistas b, FotosVehiculos c, Provincias d, Localidades e, LocalizacionesTransportistas f, Imagenes z 
-WHERE b.disponible = 1 AND a.codUsuario = b.codUsuario AND z.codImagen = c.codImagen AND c.codAutoTransportista = b.codAutoTransportista AND 
-d.codProvincia = e.codProvincia AND d.codPais = e.codPais AND e.codLocalidad = f.codLocalizacionTransportista ORDER BY 1;";
+$usuario = htmlspecialchars($_POST['usuarioI']);
+$contrasena = htmlspecialchars($_POST['contrasenaI']);
+
+$query = "SELECT codRolUsuario as rol FROM Accesos WHERE alias = :alias AND contrasena = :contrasena;";
+$row;  
+
+        try{
+            $dbh = new PDO($cadena,$user,$pass);
+            $stmt = $dbh->prepare($query);
+            $stmt->execute(array(':alias' => $usuario, ':contrasena' => $contrasena));
+            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e){
+                print "Error: " . $e->getMessage() . "<br/>";
+                die();
+            }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,39 +55,44 @@ d.codProvincia = e.codProvincia AND d.codPais = e.codPais AND e.codLocalidad = f
                                 <a href="#loginRegistro" id="ingresar" class="ui-btn ui-shadow ui-corner-all ui-icon-user ui-btn-icon-top" data-transition="pop" data-theme="b">Ingresar</a>
                             </li>
                             <li>
-                                <a href="registroTransportistas.php" id="ofrecerFlete" class="ui-btn ui-shadow ui-corner-all ui-icon-carat-r ui-btn-icon-top" data-transition="pop" data-theme="b">Ofrecer Fletes</a>
+                                <a href="#loginRegistro" id="ofrecerFlete" class="ui-btn ui-shadow ui-corner-all ui-icon-carat-r ui-btn-icon-top" data-transition="pop" data-theme="b">Ofrecer Fletes</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div role="main" class="ui-content" data-theme="b" jqm-content>
-
-                <ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar..." data-inset="true">
-                    <li data-role="list-divider">Autos Disponibles Actualmente</li>
-
-                    <?php
-                    try{
-                        $tmp = "";
-                        $dbh = new PDO($cadena,$user,$pass);
-                        foreach ($dbh->query($query) as $row) {
-                            if($tmp != $row['placa']){ 
-                                ?>
-                                <li>
-                                    <?php 
-                                    echo "<a href=\"detalleTransportista.php?idTransp=".$row['identificacion']."&idVehic=".$row['placa']."\">"."<img src='http://localhost/".$row['direccion']."/".$row['imagen']."' /> <p><b>Nombre del Transportista: </b></p><p>".$row['nombre']."</p> <p><b>Lugar donde trabaja: </b></p> <p>".$row['lugar']." </p></a>";
-                                    ?>
-                                </li>
-                                <?php
-                                $tmp = $row['placa'];
-                            }
+                <?php
+                $role=0;
+                    foreach ($row as $value) {
+                        if($row != null){
+                            $role = $value['rol'];    
                         }
-                    } catch (PDOException $e){
-                        print "Error: " . $e->getMessage() . "<br/>";
-                        die();
                     }
-                    ?>
-                </ul>
+
+                ?>
+                <!--MENU USUARIO NORMAL-->
+                <?php
+                    if($role == 1){
+                        echo "USUARIO NORMAL";
+                    }
+                    
+                ?>
+
+                <!--MENU USUARIO TRANSPORTISTA-->
+                <?php
+                    if($role == 2){
+                        echo "USUARIO TRANSPORTISTA";
+                    }
+                
+                ?>
+                <!--LOGUEO INVALIDO-->
+                <?php
+                    if($role == 0){
+                        echo "USUARIO NO VALIDO";
+                    }
+                ?>
+                
             </div>
             <div data-role="footer" data-theme="b" data-position="fixed">
                 <p>Fletes Costa Rica - Derechos Reservados</p>
