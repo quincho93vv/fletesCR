@@ -4,7 +4,7 @@ include('conexion.php');
     //$variable = mysql_query("SELECT * FROM  Usuarios") or die("Error en: SELECT * FROM  USUARIOS: " . mysql_error());
 
 $queryPais = "SELECT * FROM paises";
-$queryProvincias = "SELECT * FROM provincias WHERE codPais = ?";
+$queryProvincias = "SELECT * FROM provincias WHERE codPais = 0";
 
 ?>
 <html>
@@ -78,6 +78,24 @@ $queryProvincias = "SELECT * FROM provincias WHERE codPais = ?";
                                 foreach ($dbh->query($queryPais) as $row) {
                                     ?>
                                     <option value="<?php echo $row['codPais'];?>">
+                                        <?php echo $row['nombre'];?>
+                                    </option>
+                                    <?php
+                                }
+                            } catch (PDOException $e){
+                                print "Error: " . $e->getMessage() . "<br/>";
+                                die();
+                            }
+                        ?>
+                    </select>
+                    <label for="provinciasI" data-theme="b">Estado / provincia: </label>
+                    <select name="provinciasI" id="provinciasI">
+                        <?php
+                            try{
+                                $dbh = new PDO($cadena,$user,$pass);
+                                foreach ($dbh->query($queryProvincias) as $row) {
+                                    ?>
+                                    <option value="<?php echo $row['codProvincia'];?>">
                                         <?php echo $row['nombre'];?>
                                     </option>
                                     <?php

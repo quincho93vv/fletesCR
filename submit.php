@@ -20,8 +20,8 @@ if(isset($_POST['registrarUsuario'])){
 	$segundaDireccion = $_POST['direccionDosI'];
 	$telefono = $_POST['telefonoI'];
 	$celular = $_POST['celularI'];
-	$pais = $_POST['paisI'];
-
+	$pais = $_POST['provinciasI'];
+	
 	$sentenciaInsertDatosPer->bindParam(':email', $email);
 	$sentenciaInsertDatosPer->bindParam(':direccionUno', $primeraDireccion);
 	$sentenciaInsertDatosPer->bindParam(':direccionDos', $segundaDireccion);
