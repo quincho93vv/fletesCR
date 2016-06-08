@@ -91,7 +91,7 @@ d.codProvincia = e.codProvincia AND d.codPais = e.codPais AND e.codLocalidad = f
                 <label for="usuarioL" data-theme="b">Usuario: </label>
                 <input data-role="text" name="usuarioI" id="usuarioI" placeholder="Ingrese su usuario" value="" data-mini="true" data-theme="b">
                 <label for="contrasenaL" data-theme="b">Contrasena: </label>
-                <input data-role="password" name="contrasenaI" id="contrasenaI" value="" autocomplete="off" data-mini="true" data-theme="b">
+                <input data-role="password" type="password" name="contrasenaI" id="contrasenaI" value="" autocomplete="off" data-mini="true" data-theme="b">
                 <button data-role="submit" data-theme="b">Ingresar</button>
             </form>
         </div>

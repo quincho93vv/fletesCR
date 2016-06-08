@@ -4,9 +4,9 @@ include('conexion.php');
 
 $dbh = new PDO($cadena,$user,$pass);
 
-$sentenciaInsertUsuario = $dbh->prepare("INSERT INTO usuarios (`codUsuario`, `nombre`, `apellidoUno`, `apellidoDos`, `fechaNacimiento`, `codDatoPersonal`) VALUES (:cedula, :nombre, :primerApellido, :segundoApellido, :fechaNacimiento, :email)");
+$sentenciaInsertUsuario = $dbh->prepare("INSERT INTO Usuarios (`codUsuario`, `nombre`, `apellidoUno`, `apellidoDos`, `fechaNacimiento`, `codDatoPersonal`) VALUES (:cedula, :nombre, :primerApellido, :segundoApellido, :fechaNacimiento, :email)");
 
-$sentenciaInsertDatosPer = $dbh->prepare("INSERT INTO datospersonales (`codDatoPersonal`, `direccionUno`, `direccionDos`, `telefono`, `celular`, `codLocalidad`) VALUES (:email, :direccionUno, :direccionDos, :telefono, :celular, :pais)");
+$sentenciaInsertDatosPer = $dbh->prepare("INSERT INTO DatosPersonales (`codDatoPersonal`, `direccionUno`, `direccionDos`, `telefono`, `celular`, `codLocalidad`) VALUES (:email, :direccionUno, :direccionDos, :telefono, :celular, :pais)");
 
 
 if(isset($_POST['registrarUsuario'])){

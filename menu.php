@@ -74,7 +74,25 @@ $row;
                 <!--MENU USUARIO NORMAL-->
                 <?php
                     if($role == 1){
-                        echo "USUARIO NORMAL";
+                        try{
+                            $dbh = new PDO($cadena,$user,$pass);
+                            $queryUN = "SELECT nombre AS nombre FROM Usuarios WHERE codDatoPersonal = :dato";
+                            $stmt = $dbh->prepare($queryUN);
+                            $stmt->execute(array(':dato' => $usuario));
+                            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                            foreach ($row as $value){
+                                echo "<h2>Bienvenido ".$value['nombre']."</h2>";
+
+                                echo "<a>Cambiar Contrasena</a> <br>";
+                                echo "<a>Ofrecer un Flete</a> <br>";
+                                echo "<a>Historial de Fletes</a> <br>";    
+                            }
+                        }catch (PDOException $e){
+                            print "Error: " . $e->getMessage() . "<br/>";
+                            die();
+                        }
+                        
                     }
                     
                 ?>
@@ -82,7 +100,29 @@ $row;
                 <!--MENU USUARIO TRANSPORTISTA-->
                 <?php
                     if($role == 2){
-                        echo "USUARIO TRANSPORTISTA";
+                        try{
+                            $dbh = new PDO($cadena,$user,$pass);
+                            $queryUN = "SELECT nombre AS nombre FROM Usuarios WHERE codDatoPersonal = :dato";
+                            $stmt = $dbh->prepare($queryUN);
+                            $stmt->execute(array(':dato' => $usuario));
+                            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                            foreach ($row as $value){
+                                echo "<h2>Bienvenido ".$value['nombre']."</h2>";
+                                ?>
+                                <div data-role="fieldcontain">
+                                    <label for="flip-5">Ofrecer vehiculo placa:</label>
+                                    <select name="flip-5" id="flip-5" data-role="slider" data-theme="b" data-track-theme="b">
+                                        <option value="no">No</option>
+                                        <option value="si">Si</option>
+                                    </select>
+                                </div>
+                                <?php
+                            }
+                        }catch (PDOException $e){
+                            print "Error: " . $e->getMessage() . "<br/>";
+                            die();
+                        }
                     }
                 
                 ?>
@@ -107,7 +147,7 @@ $row;
                 <label for="usuarioL" data-theme="b">Usuario: </label>
                 <input data-role="text" name="usuarioI" id="usuarioI" placeholder="Ingrese su usuario" value="" data-mini="true" data-theme="b">
                 <label for="contrasenaL" data-theme="b">Contrasena: </label>
-                <input data-role="password" name="contrasenaI" id="contrasenaI" value="" autocomplete="off" data-mini="true" data-theme="b">
+                <input data-role="password" type="password" name="contrasenaI" id="contrasenaI" value="" autocomplete="off" data-mini="true" data-theme="b">
                 <button data-role="submit" data-theme="b">Ingresar</button>
             </form>
         </div>

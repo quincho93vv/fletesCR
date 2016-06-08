@@ -161,6 +161,20 @@ WHERE a.codUsuario = :codUsuario AND b.codAutoTransportista = :codVehic AND a.co
             <div data-role="footer" data-theme="b" data-position="fixed">
                 <p>Fletes Costa Rica - Derechos Reservados</p>
             </div>
+                    <div data-role="dialog" id="loginRegistro" data-url="popup" data-theme="b">
+        <div data-role="header" data-theme="b">
+            <h1>Ingresa</h1>
+        </div>
+        <div role="main" class="ui-content" data-theme="b">
+            <form method="post" action="menu.php" data-theme="b">
+                <label for="usuarioL" data-theme="b">Usuario: </label>
+                <input data-role="text" name="usuarioI" id="usuarioI" placeholder="Ingrese su usuario" value="" data-mini="true" data-theme="b">
+                <label for="contrasenaL" data-theme="b">Contrasena: </label>
+                <input data-role="password" type="password" name="contrasenaI" id="contrasenaI" value="" autocomplete="off" data-mini="true" data-theme="b">
+                <button data-role="submit" data-theme="b">Ingresar</button>
+            </form>
+        </div>
+    </div>
         </div>
     </div>
     </body>
